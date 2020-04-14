@@ -1,0 +1,1205 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/13/2020 6:02:52 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="I702TN"
+  DTS:CreatorName="I702TN\Nestor"
+  DTS:DTSID="{B93F5FD9-BBD3-4789-ABCD-1AC5D69BD9C6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.71"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="Tarea04-Aleatoriamente"
+  DTS:PackageType="5"
+  DTS:VersionBuild="62"
+  DTS:VersionGUID="{2D30F36F-C6F6-4C95-94A0-B3A6AEB7151E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{B406697E-059F-4779-816E-88A88C54AB41}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="3082"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\Development\repos\cursoSSIS\Tarea04-Aleatoriamente\rutas.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="200"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RutaArchivo"
+              DTS:DTSID="{5F31C332-F038-4060-B825-AD4F6235E27A}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{64A78547-10FD-4B56-9848-C4B594C057D4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Datos">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E0140FF6-5A9D-4A54-84C8-5465A0E300F6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CB66E9AD-AEDB-4E2E-B183-14278A87B982}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowNumber">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container over var Datos"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{F2AE0B43-33F8-4DDF-A8F0-BA51372B5945}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container over var Datos">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{BCD4B886-C6B2-439B-9D30-ADA826DDDA86}"
+        DTS:ObjectName="{BCD4B886-C6B2-439B-9D30-ADA826DDDA86}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::Datos" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container over var Datos\Tarea Ejecutar SQL - UPDATE SamplingPlusImportColumn"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{2F0D4C2A-AB60-4A37-A8DC-92940A5D3EEA}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Ejecutar SQL - UPDATE SamplingPlusImportColumn"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}"
+              SQLTask:SqlStatementSource="UPDATE SamplingPlusImportColumn&#xA;   SET RutaArchivo = Ruta,&#xA;       ContenidoArchivo = Binario&#xA; FROM  SamplingPlusImportColumn, Documentos &#xA;WHERE  SamplingPlusImportColumn.ID = ?&#xA;       AND Documentos.ID = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::RowNumber"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{63D3B329-3103-4FB2-987D-D000771C31D7}"
+          DTS:ObjectName="{63D3B329-3103-4FB2-987D-D000771C31D7}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::ID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{FAA5FF7E-512D-4663-8EAC-5B5A83412927}"
+          DTS:ObjectName="{FAA5FF7E-512D-4663-8EAC-5B5A83412927}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::RowNumber" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar SQL - SELECT to var Datos"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{52105F5E-81A5-47FA-ABA7-2C3CF44C51DE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar SQL - SELECT to var Datos"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="SELECT&#xA;&#x9;ID,&#xA;&#x9;CONVERT(INT, ROW_NUMBER() OVER (ORDER BY ID ASC)) AS RowNumber &#xA;FROM SamplingPlusImportColumn&#xA;&#xA;"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::Datos" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar SQL - TRUNCATE tablas de trabajo"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Crear (si no existe) o Limpiar (si existe) tabla JugadoreSinValor"
+      DTS:DTSID="{d17e3529-ba1f-4b77-9892-3c73ee5cba9c}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar SQL - TRUNCATE tablas de trabajo"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.SamplingPlusImportColumn&#xA;&#xA;TRUNCATE TABLE dbo.Documentos&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{B5A1BABC-16DA-4183-AF0C-2518E391D799}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Flujo de datos - Sampling &amp; Import Column"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino de OLE DB - Documentos"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[Documentos]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Connections[OleDbConnection]"
+                  connectionManagerID="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.CursoSSIS 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Inputs[Entrada de destino de OLE DB].Columns[RutaArchivo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="RutaArchivo"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ruta]"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[RutaArchivo]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Inputs[Entrada de destino de OLE DB].Columns[ContenidoArchivo]"
+                      cachedDataType="image"
+                      cachedName="ContenidoArchivo"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Binario]"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Outputs[Salida de Importar columna].Columns[ContenidoArchivo]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ruta]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Ruta" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Binario]"
+                      dataType="image"
+                      name="Binario" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino de OLE DB - Sampling"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[SamplingPlusImportColumn]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Connections[OleDbConnection]"
+                  connectionManagerID="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.CursoSSIS 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Inputs[Entrada de destino de OLE DB].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Outputs[Salida seleccionada de muestreo].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Inputs[Entrada de destino de OLE DB].Columns[Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre]"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Outputs[Salida seleccionada de muestreo].Columns[Nombre]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Inputs[Entrada de destino de OLE DB].ExternalColumns[RutaArchivo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="RutaArchivo" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Inputs[Entrada de destino de OLE DB].ExternalColumns[ContenidoArchivo]"
+                      dataType="image"
+                      name="ContenidoArchivo" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaHoraCreacion]"
+                      dataType="dbTimeStamp"
+                      name="FechaHoraCreacion" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna"
+              componentClassID="Microsoft.Inserter"
+              contactInfo="Importar columna;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Lee datos de archivos y los agrega a las columnas de un flujo de datos. Por ejemplo, se usa una columna de entrada de rutas de acceso de archivos para importar fotografías desde un directorio."
+              name="Importar columna"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Inputs[Entrada de Importar columna]"
+                  name="Entrada de Importar columna">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Inputs[Entrada de Importar columna].Columns[RutaArchivo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="RutaArchivo"
+                      errorOrTruncationOperation="Abrir archivo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[RutaArchivo]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el id. de la columna de salida que va a recibir los datos de archivo."
+                          name="FileDataColumnID">#{Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Outputs[Salida de Importar columna].Columns[ContenidoArchivo]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="TRUE si se espera que el archivo comience por un BOM"
+                          name="ExpectBOM">false</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Outputs[Salida de Importar columna]"
+                  exclusionGroup="1"
+                  name="Salida de Importar columna"
+                  synchronousInputId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Inputs[Entrada de Importar columna]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Outputs[Salida de Importar columna].Columns[ContenidoArchivo]"
+                      dataType="image"
+                      errorOrTruncationOperation="Leer archivo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Outputs[Salida de Importar columna].Columns[ContenidoArchivo]"
+                      name="ContenidoArchivo" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Outputs[Salida de error de Importar columna]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de Importar columna"
+                  synchronousInputId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Inputs[Entrada de Importar columna]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Outputs[Salida de error de Importar columna].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Outputs[Salida de error de Importar columna].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Outputs[Salida de error de Importar columna].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Outputs[Salida de error de Importar columna].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila"
+              componentClassID="Microsoft.RowSampling"
+              contactInfo="Muestreo de fila;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Muestrea aleatoriamente un número específico de filas de un flujo de datos de entrada. Por ejemplo, se puede usar para seleccionar aleatoriamente los productos que se van a mostrar en un sitio web."
+              name="Muestreo de fila">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de filas de la muestra."
+                  expressionType="Notify"
+                  name="SamplingValue">10</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la semilla para el generador de números aleatorios."
+                  name="SamplingSeed">0</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Inputs[Entrada de Muestreo de fila 1]"
+                  name="Entrada de Muestreo de fila 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Inputs[Entrada de Muestreo de fila 1].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Inputs[Entrada de Muestreo de fila 1].Columns[Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].Columns[Nombre]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Outputs[Salida seleccionada de muestreo]"
+                  name="Salida seleccionada de muestreo">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Salida para filas de la muestra"
+                      name="Selected">true</property>
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Outputs[Salida seleccionada de muestreo].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Outputs[Salida seleccionada de muestreo].Columns[ID]"
+                      name="ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de entrada"
+                          name="InputColumnLineageID">#{Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].Columns[ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Outputs[Salida seleccionada de muestreo].Columns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Outputs[Salida seleccionada de muestreo].Columns[Nombre]"
+                      name="Nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de entrada"
+                          name="InputColumnLineageID">#{Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].Columns[Nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Outputs[Salida no seleccionada de muestreo]"
+                  name="Salida no seleccionada de muestreo">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Salida para filas de la muestra"
+                      name="Selected">false</property>
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Outputs[Salida no seleccionada de muestreo].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Outputs[Salida no seleccionada de muestreo].Columns[ID]"
+                      name="ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de entrada"
+                          name="InputColumnLineageID">#{Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].Columns[ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Outputs[Salida no seleccionada de muestreo].Columns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Outputs[Salida no seleccionada de muestreo].Columns[Nombre]"
+                      name="Nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Id. de linaje de columna de entrada"
+                          name="InputColumnLineageID">#{Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].Columns[Nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Origen de archivo plano;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de archivo plano"
+              localeId="3082"
+              name="Origen de archivo plano"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si las columnas de longitud cero se tratan como NULL."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre de una columna de salida que contiene el nombre de archivo. Si no se especifica ningún nombre, no se genera ninguna columna de salida con el nombre de archivo."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de origen de archivo plano]"
+                  name="Salida de origen de archivo plano">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[RutaArchivo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[RutaArchivo]"
+                      length="200"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[RutaArchivo]"
+                      name="RutaArchivo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[RutaArchivo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="RutaArchivo" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de archivo plano">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Columna de salida de error de origen de archivo plano"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      name="Columna de salida de error de origen de archivo plano" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="Origen de OLE DB - SELECT FIFA para RowSampling"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT ID, Nombre FROM dbo.FIFA</property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Connections[OleDbConnection]"
+                  connectionManagerID="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.CursoSSIS 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].Columns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].ExternalColumns[Nombre]"
+                      length="50"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB].ExternalColumns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nombre" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de error de origen de OLE DB].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de error de origen de OLE DB].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de error de origen de OLE DB].Columns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de error de origen de OLE DB].Columns[Nombre]"
+                      name="Nombre" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column.Paths[Salida de Importar columna]"
+              endId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de Importar columna"
+              startId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Outputs[Salida de Importar columna]" />
+            <path
+              refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column.Paths[Salida de origen de archivo plano]"
+              endId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna.Inputs[Entrada de Importar columna]"
+              name="Salida de origen de archivo plano"
+              startId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano.Outputs[Salida de origen de archivo plano]" />
+            <path
+              refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column.Paths[Salida de origen de OLE DB]"
+              endId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Inputs[Entrada de Muestreo de fila 1]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling.Outputs[Salida de origen de OLE DB]" />
+            <path
+              refId="Package\Tarea Flujo de datos - Sampling &amp; Import Column.Paths[Salida seleccionada de muestreo]"
+              endId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling.Inputs[Entrada de destino de OLE DB]"
+              name="Salida seleccionada de muestreo"
+              startId="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila.Outputs[Salida seleccionada de muestreo]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{EBC532E7-91CB-4377-9814-082A281DEF95}"
+      DTS:From="Package\Tarea Ejecutar SQL - TRUNCATE tablas de trabajo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Tarea Flujo de datos - Sampling &amp; Import Column" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{14276F20-68AE-4C79-B75E-0551518C6798}"
+      DTS:From="Package\Tarea Ejecutar SQL - SELECT to var Datos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Foreach Loop Container over var Datos" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{67F49F1B-61E5-48D7-BD49-A1CF0F2A656A}"
+      DTS:From="Package\Tarea Flujo de datos - Sampling &amp; Import Column"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Tarea Ejecutar SQL - SELECT to var Datos" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="370,42"
+          Id="Package\Foreach Loop Container over var Datos\Tarea Ejecutar SQL - UPDATE SamplingPlusImportColumn"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="381,71"
+          Size="381,114"
+          Id="Package\Foreach Loop Container over var Datos"
+          TopLeft="9.50000000000006,270.5" />
+        <NodeLayout
+          Size="290,42"
+          Id="Package\Tarea Ejecutar SQL - SELECT to var Datos"
+          TopLeft="50,183.5" />
+        <NodeLayout
+          Size="330,42"
+          Id="Package\Tarea Ejecutar SQL - TRUNCATE tablas de trabajo"
+          TopLeft="31,5.5" />
+        <NodeLayout
+          Size="320,42"
+          Id="Package\Tarea Flujo de datos - Sampling &amp; Import Column"
+          TopLeft="36,93.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="196,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="197.5,225.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="195.5,135.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tarea Flujo de datos - Sampling &amp; Import Column">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Importar columna"
+          TopLeft="426.5,107.5" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Muestreo de fila"
+          TopLeft="99.5000000000001,106.5" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de archivo plano"
+          TopLeft="411,5.49999999999989" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling"
+          TopLeft="63.0000000000001,209.5" />
+        <NodeLayout
+          Size="345,42"
+          Id="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling"
+          TopLeft="5.5,5.49999999999989" />
+        <NodeLayout
+          Size="246,42"
+          Id="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Documentos"
+          TopLeft="386,209.5" />
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos - Sampling &amp; Import Column.Paths[Salida de origen de archivo plano]"
+          TopLeft="509,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos - Sampling &amp; Import Column.Paths[Salida de Importar columna]"
+          TopLeft="509,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos - Sampling &amp; Import Column.Paths[Salida seleccionada de muestreo]"
+          TopLeft="178,148.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-72.4276953125,21.87548828125,144.855390625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos - Sampling &amp; Import Column.Paths[Salida de origen de OLE DB]"
+          TopLeft="178,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Destino de OLE DB - Sampling">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos - Sampling &amp; Import Column\Origen de OLE DB - SELECT FIFA para RowSampling">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="localhost.CursoSSIS 1"
+  DTS:DTSID="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=CursoSSIS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}I702TN.CursoSSIS;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

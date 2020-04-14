@@ -1,0 +1,5 @@
+D:\Source\repos\CursoSSIS\ImportColumn\Add existing package from SQL Server.PNG
+D:\Source\repos\CursoSSIS\ImportColumn\HolaMundo.pdf
+D:\Source\repos\CursoSSIS\ImportColumn\HolaMundo.exe
+D:\Source\repos\CursoSSIS\ImportColumn\spx.txt
+D:\Source\repos\CursoSSIS\ImportColumn\spx.xlsx

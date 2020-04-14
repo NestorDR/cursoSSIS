@@ -1,0 +1,194 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/27/2020 5:10:11 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="I702TN"
+  DTS:CreatorName="I702TN\Nestor"
+  DTS:DTSID="{A813BB8F-E73D-4B9D-B5A6-56C8E25383DC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.71"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="CF-3-17-SequenceContainer"
+  DTS:PackageType="5"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{9567903D-9C82-4262-9B0B-F2E30D02A90E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Contenedor + Transacción"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{2CA15388-D222-4DD3-9C4F-AC471851DC6D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Contenedor + Transacción"
+      DTS:TransactionOption="0">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Contenedor + Transacción\Tarea Ejecutar SQL -&gt; DELETE DemoOrigen"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{32956648-5E7E-4AD3-9CC5-D069EC819CFC}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Ejecutar SQL -&gt; DELETE DemoOrigen"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="DELETE DemoOrigen" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Contenedor + Transacción\Tarea Ejecutar SQL -&gt; EXEC sp_rename DemoOrigen, DemoDestino"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{2cecfcc4-bd77-4c04-9c04-f7e17385839b}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Ejecutar SQL -&gt; EXEC sp_rename DemoOrigen, DemoDestino"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="EXEC sp_rename DemoOrigen, DemoDestino" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Contenedor + Transacción.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{DCBC3453-F40F-4935-B31C-EA9C5929CECE}"
+          DTS:From="Package\Contenedor + Transacción\Tarea Ejecutar SQL -&gt; DELETE DemoOrigen"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Contenedor + Transacción\Tarea Ejecutar SQL -&gt; EXEC sp_rename DemoOrigen, DemoDestino" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar SQL -&gt; Prepare tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{a66dd814-fb6a-4251-9e27-44b4ef1fc7e3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar SQL -&gt; Prepare tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="SET ANSI_NULLS ON&#xA;SET QUOTED_IDENTIFIER ON&#xA;GO&#xA;&#xA;-- Crear la tabla a utilizar en la demostración&#xA;IF EXISTS (SELECT * FROM sysobjects WHERE name='DemoOrigen' and xtype='U')&#xA;    DELETE FROM [dbo].[DemoOrigen]&#xA;ELSE&#xA;  BEGIN&#xA;    CREATE TABLE [dbo].[DemoOrigen]&#xA;    (&#xA;&#x9;    Id INT IDENTITY(1,1) NOT NULL,&#xA;&#x9;    Categoria VARCHAR(15) NULL,&#xA;&#x9;    Monto FLOAT NULL,&#xA;&#x9;    FechaHoraCreacion DATETIME NULL,&#xA;        CONSTRAINT [PK_DemoOrigen] PRIMARY KEY CLUSTERED ( Id ASC )&#xA;        WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;    ) ON [PRIMARY]&#xA;    ALTER TABLE [dbo].[DemoOrigen] ADD  CONSTRAINT [DF_DemoOrigen_FechaHoraCreacion]  DEFAULT (GETDATE()) FOR [FechaHoraCreacion]&#xA;  END&#xA;GO&#xA;&#xA;-- Insertar datos de ejemplo&#xA;INSERT INTO [dbo].[DemoOrigen] (Categoria, Monto)&#xA;VALUES ('BBB', 743.23),&#xA;       ('MMM', 456.32),&#xA;       ('UUU', 644.23),&#xA;       ('YYY', 4754.32),&#xA;       ('III', 865.23),&#xA;       ('QQQ', 74.32),&#xA;       ('DDD', 3.23),&#xA;       ('SSS', 34.32)&#xA;&#xA;-- Crear una segunda tabla para la parte final del ejemplo&#xA;-- Solo necesita estar creada, NO que tenga datos&#xA;IF EXISTS (SELECT * FROM sysobjects WHERE name='DemoDestino' and xtype='U')&#xA;    TRUNCATE TABLE DemoDestino&#xA;ELSE&#xA;  BEGIN&#xA;    CREATE TABLE [dbo].[DemoDestino]&#xA;    (&#xA;&#x9;    Id INT IDENTITY(1,1) NOT NULL,&#xA;&#x9;    Categoria VARCHAR(15) NULL,&#xA;&#x9;    Monto FLOAT NULL,&#xA;&#x9;    FechaHoraCreacion DATETIME NULL,&#xA;        CONSTRAINT [PK_DemoDestino] PRIMARY KEY CLUSTERED ( Id ASC )&#xA;        WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;    ) ON [PRIMARY]&#xA;    ALTER TABLE [dbo].[DemoDestino] ADD  CONSTRAINT [DF_DemoDestino_FechaHoraCreacion]  DEFAULT (GETDATE()) FOR [FechaHoraCreacion]&#xA;  END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0CD38FDB-189D-465E-93A0-148E9692DC13}"
+      DTS:From="Package\Tarea Ejecutar SQL -&gt; Prepare tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Contenedor + Transacción" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="300,42"
+          Id="Package\Contenedor + Transacción\Tarea Ejecutar SQL -&gt; DELETE DemoOrigen"
+          TopLeft="27,5.5" />
+        <NodeLayout
+          Size="300,42"
+          Id="Package\Contenedor + Transacción\Tarea Ejecutar SQL -&gt; EXEC sp_rename DemoOrigen, DemoDestino"
+          TopLeft="34,93" />
+        <EdgeLayout
+          Id="Package\Contenedor + Transacción.PrecedenceConstraints[Constraint]"
+          TopLeft="180.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.5"
+              Start="0,0"
+              End="0,38">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="362,166"
+          Size="362,209"
+          Id="Package\Contenedor + Transacción"
+          TopLeft="138,214" />
+        <NodeLayout
+          Size="263,42"
+          Id="Package\Tarea Ejecutar SQL -&gt; Prepare tables"
+          TopLeft="181,109" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="315.75,151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63"
+              Start="0,0"
+              End="0,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="La acción sp_rename del Sequence Container debería fallar&#xA;porque ya existe una tabla DemoDestino en la BD.&#xA;&#xA;Cuando se hace con propiedad &#xA;* TransactionOption = Required, el DELETE previo se deshace por RollBack, pero si &#xA;* TransactionOption = NotSupported, el DELETE resulta exitoso"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="465,120"
+          Id="e4cb1385-b596-4157-8ee9-f86ce2be4a87"
+          TopLeft="498,241" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

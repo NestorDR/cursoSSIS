@@ -1,0 +1,27 @@
+bin
+CopyFifaTable.dtsx
+Demo01.database
+Demo01.dtproj
+Demo01.dtproj.user
+DF-Aggregate.dtsx
+DF-ConditionalSplit.dtsx
+DF-DerivedColumn.dtsx
+DF-LookupConCache.dtsx
+DF-LookupSinCache.dtsx
+ExportFifaTableWithWizard.dtsx
+filesInFolder.txt
+ForEachLoopContainer.dtsx
+ForLoopContainer.dtsx
+FTPTask.dtsx
+I702TN.CursoSSIS 1.conmgr
+I702TN.CursoSSIS.conmgr
+obj
+PackageTask.dtsx
+ProcessTask-ExecuteFilesInFolder.cmd
+ProcessTask.dtsx
+Project.params
+ScriptTask.dtsx
+SendMailTask.dtsx
+SequenceContainer.dtsx
+T-SQLTask.dtsx
+Tarea02.dtsx

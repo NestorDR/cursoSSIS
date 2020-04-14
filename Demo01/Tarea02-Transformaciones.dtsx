@@ -1,0 +1,1209 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/29/2020 6:12:47 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="I702TN"
+  DTS:CreatorName="I702TN\Nestor"
+  DTS:DTSID="{AB0FFA65-AC8C-4103-975D-7AC39D41874A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.71"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="Tarea02-Transformaciones"
+  DTS:PackageType="5"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{9DD800C1-148A-4DB2-8688-185A12ED0E59}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar SQL - Crear o Limpiar JugadoreSin-ConValor"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Crear (si no existe) o Limpiar (si existe) tabla JugadoreSinValor"
+      DTS:DTSID="{6C418F2E-9E9A-46E9-BCD3-ADF1C2051FA9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar SQL - Crear o Limpiar JugadoreSin-ConValor"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.JugadoresSinValor') IS NULL&#xA;    CREATE TABLE dbo.JugadoresSinValor (&#xA;        ID int NOT NULL,&#xA;        Nombre varchar(50) NOT NULL,&#xA;        ValorEuropaEnLetras varchar(10) NOT NULL,&#xA;        CONSTRAINT PK_JugadoresSinValor PRIMARY KEY CLUSTERED ( ID ASC ) &#xA;        WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, &#xA;        IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,&#xA;        ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) &#xA;        ON [PRIMARY]&#xA;    ) ON [PRIMARY]&#xA;ELSE&#xA;    TRUNCATE TABLE dbo.JugadoresSinValor&#xA;&#xA;IF OBJECT_ID('dbo.JugadoresConValor') IS NULL&#xA;    CREATE TABLE dbo.JugadoresConValor (&#xA;        ID int NOT NULL,&#xA;        Nombre varchar(50) NOT NULL,&#xA;        PesoLibras float NULL,&#xA;        ValorEuropaPromedioMensual float NULL,&#xA;        CONSTRAINT PK_JugadoresConValor PRIMARY KEY CLUSTERED ( ID  ASC ) &#xA;        WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, &#xA;        IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, &#xA;        ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) &#xA;        ON [PRIMARY]&#xA;    ) ON [PRIMARY]&#xA;ELSE&#xA;    TRUNCATE TABLE dbo.JugadoresConValor&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Flujo de datos - Generar nuevos datos"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{C0A14902-3F58-4E1A-9A9E-112564FFCB8E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Flujo de datos - Generar nuevos datos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+              name="Columna derivada - ValorEuropaEnLetrasUnicode"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Inputs[Entrada de columna derivada]"
+                  description="Entrada en la transformación Columna derivada"
+                  name="Entrada de columna derivada">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Outputs[Salida de columna derivada]"
+                  description="Salida predeterminada de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  name="Salida de columna derivada"
+                  synchronousInputId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Outputs[Salida de columna derivada].Columns[ValorEuropaEnLetrasUnicode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      length="9"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Outputs[Salida de columna derivada].Columns[ValorEuropaEnLetrasUnicode]"
+                      name="ValorEuropaEnLetrasUnicode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">"Sin Valor"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Sin Valor"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Outputs[Salida de error de columna derivada]"
+                  description="Salida de error de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de columna derivada"
+                  synchronousInputId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+              name="Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Inputs[Entrada de columna derivada]"
+                  description="Entrada en la transformación Columna derivada"
+                  name="Entrada de columna derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Inputs[Entrada de columna derivada].Columns[PesoKG]"
+                      cachedDataType="i4"
+                      cachedName="PesoKG"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[PesoKG]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Inputs[Entrada de columna derivada].Columns[ValorEuropa]"
+                      cachedDataType="r8"
+                      cachedName="ValorEuropa"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[ValorEuropa]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Outputs[Salida de columna derivada]"
+                  description="Salida predeterminada de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  name="Salida de columna derivada"
+                  synchronousInputId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Outputs[Salida de columna derivada].Columns[PesoLibras]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Outputs[Salida de columna derivada].Columns[PesoLibras]"
+                      name="PesoLibras"
+                      precision="17"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">#{Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[PesoKG]} * 2.20462</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">PesoKG * 2.20462</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Outputs[Salida de columna derivada].Columns[ValorEuropaPromedioMensual]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Outputs[Salida de columna derivada].Columns[ValorEuropaPromedioMensual]"
+                      name="ValorEuropaPromedioMensual"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">#{Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[ValorEuropa]} / 12</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ValorEuropa / 12</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Outputs[Salida de error de columna derivada]"
+                  description="Salida de error de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de columna derivada"
+                  synchronousInputId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar)"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos - A Non Unicade (varchar)"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Inputs[Entrada de conversión de datos].Columns[ValorEuropaEnLetrasUnicode]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="ValorEuropaEnLetrasUnicode"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Outputs[Salida de columna derivada].Columns[ValorEuropaEnLetrasUnicode]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Outputs[Salida de conversión de datos].Columns[ValorEuropaEnLetras]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="9"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Outputs[Salida de conversión de datos].Columns[ValorEuropaEnLetras]"
+                      name="ValorEuropaEnLetras"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Outputs[Salida de columna derivada].Columns[ValorEuropaEnLetrasUnicode]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino de OLE DB JugadoresConValor"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[JugadoresConValor]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Connections[OleDbConnection]"
+                  connectionManagerID="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[I702TN.CursoSSIS 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB].Columns[Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre]"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB].Columns[PesoLibras]"
+                      cachedDataType="numeric"
+                      cachedName="PesoLibras"
+                      cachedPrecision="17"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[PesoLibras]"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Outputs[Salida de columna derivada].Columns[PesoLibras]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB].Columns[ValorEuropaPromedioMensual]"
+                      cachedDataType="r8"
+                      cachedName="ValorEuropaPromedioMensual"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[ValorEuropaPromedioMensual]"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Outputs[Salida de columna derivada].Columns[ValorEuropaPromedioMensual]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[PesoLibras]"
+                      dataType="r8"
+                      name="PesoLibras" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[ValorEuropaPromedioMensual]"
+                      dataType="r8"
+                      name="ValorEuropaPromedioMensual" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino de OLE DB JugadoresSinValor"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[JugadoresSinValor]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Connections[OleDbConnection]"
+                  connectionManagerID="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[I702TN.CursoSSIS 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Inputs[Entrada de destino de OLE DB].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Inputs[Entrada de destino de OLE DB].Columns[Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre]"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Inputs[Entrada de destino de OLE DB].Columns[ValorEuropaEnLetras]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="ValorEuropaEnLetras"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[ValorEuropaEnLetras]"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Outputs[Salida de conversión de datos].Columns[ValorEuropaEnLetras]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Inputs[Entrada de destino de OLE DB].ExternalColumns[ValorEuropaEnLetras]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="ValorEuropaEnLetras" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="División condicional - Evaluar columna ValorEuropa"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Inputs[Entrada de división condicional].Columns[ValorEuropa]"
+                      cachedDataType="r8"
+                      cachedName="ValorEuropa"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[ValorEuropa]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Outputs[ValorEuropa igual a Cero]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="ValorEuropa igual a Cero"
+                  synchronousInputId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">#{Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[ValorEuropa]} == 0</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ValorEuropa == 0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Outputs[ValorEuropa mayor a Cero]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="ValorEuropa mayor a Cero"
+                  synchronousInputId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="Origen de OLE DB - SELECT en tabla FIFA"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  ID,
+              Nombre,
+              PesoKG,
+              ValorEuropa
+ FROM  dbo.FIFA
+ORDER  BY  ID</property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Connections[OleDbConnection]"
+                  connectionManagerID="{BADF49C4-8899-4E1B-894F-EA6BB6AB6854}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[I702TN.CursoSSIS 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].ExternalColumns[Nombre]"
+                      length="50"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[PesoKG]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].ExternalColumns[PesoKG]"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[PesoKG]"
+                      name="PesoKG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[ValorEuropa]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].ExternalColumns[ValorEuropa]"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].Columns[ValorEuropa]"
+                      name="ValorEuropa"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].ExternalColumns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].ExternalColumns[PesoKG]"
+                      dataType="i4"
+                      name="PesoKG" />
+                    <externalMetadataColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB].ExternalColumns[ValorEuropa]"
+                      dataType="r8"
+                      name="ValorEuropa" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de error de origen de OLE DB].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de error de origen de OLE DB].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de error de origen de OLE DB].Columns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de error de origen de OLE DB].Columns[Nombre]"
+                      name="Nombre" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de error de origen de OLE DB].Columns[PesoKG]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de error de origen de OLE DB].Columns[PesoKG]"
+                      name="PesoKG" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de error de origen de OLE DB].Columns[ValorEuropa]"
+                      dataType="r8"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de error de origen de OLE DB].Columns[ValorEuropa]"
+                      name="ValorEuropa" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarea Flujo de datos - Generar nuevos datos.Paths[Salida de columna derivada]"
+              endId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Inputs[Entrada de conversión de datos]"
+              name="Salida de columna derivada"
+              startId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Outputs[Salida de columna derivada]" />
+            <path
+              refId="Package\Tarea Flujo de datos - Generar nuevos datos.Paths[Salida de columna derivada1]"
+              endId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de columna derivada"
+              startId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Outputs[Salida de columna derivada]" />
+            <path
+              refId="Package\Tarea Flujo de datos - Generar nuevos datos.Paths[Salida de conversión de datos]"
+              endId="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de conversión de datos"
+              startId="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar).Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Tarea Flujo de datos - Generar nuevos datos.Paths[Salida de origen de OLE DB]"
+              endId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Inputs[Entrada de división condicional]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA.Outputs[Salida de origen de OLE DB]" />
+            <path
+              refId="Package\Tarea Flujo de datos - Generar nuevos datos.Paths[ValorEuropa igual a Cero]"
+              endId="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode.Inputs[Entrada de columna derivada]"
+              name="ValorEuropa igual a Cero"
+              startId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Outputs[ValorEuropa igual a Cero]" />
+            <path
+              refId="Package\Tarea Flujo de datos - Generar nuevos datos.Paths[ValorEuropa mayor a Cero]"
+              endId="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual.Inputs[Entrada de columna derivada]"
+              name="ValorEuropa mayor a Cero"
+              startId="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa.Outputs[ValorEuropa mayor a Cero]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2659B132-9FDE-4A86-AA84-758C6303A5EA}"
+      DTS:From="Package\Tarea Ejecutar SQL - Crear o Limpiar JugadoreSin-ConValor"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Tarea Flujo de datos - Generar nuevos datos" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="375,42"
+          Id="Package\Tarea Ejecutar SQL - Crear o Limpiar JugadoreSin-ConValor"
+          TopLeft="35,18" />
+        <NodeLayout
+          Size="298,42"
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos"
+          TopLeft="62,119" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="222.5,60">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.5,59"
+              Start="0,0"
+              End="-11.5,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.5"
+                    Point2="0,29.5"
+                    Point3="-4,29.5" />
+                  <mssgle:LineSegment
+                    End="-7.5,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.5,29.5"
+                    Point2="-11.5,29.5"
+                    Point3="-11.5,33.5" />
+                  <mssgle:LineSegment
+                    End="-11.5,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tarea Flujo de datos - Generar nuevos datos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="331,42"
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos\División condicional - Evaluar columna ValorEuropa"
+          TopLeft="30,117" />
+        <NodeLayout
+          Size="405,42"
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos\Columnas derivadas - PesoLibras y ValorEuropaPromedioMensual"
+          TopLeft="95,277" />
+        <NodeLayout
+          Size="291,42"
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA"
+          TopLeft="52,23" />
+        <NodeLayout
+          Size="195,66"
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor"
+          TopLeft="10,416" />
+        <NodeLayout
+          Size="310,42"
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos\Conversión de datos - A Non Unicade (varchar)"
+          TopLeft="8,335" />
+        <NodeLayout
+          Size="323,42"
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos\Columna derivada - ValorEuropaEnLetrasUnicode"
+          TopLeft="8,216" />
+        <NodeLayout
+          Size="180,61"
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor"
+          TopLeft="220,419" />
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos.Paths[ValorEuropa mayor a Cero]"
+          TopLeft="249.333333333333,159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="158.166666666667,118"
+              Start="0,0"
+              End="158.166666666667,110.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5405892964522" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.5405892964522"
+                    Point2="0,29.5405892964522"
+                    Point3="4,29.5405892964522" />
+                  <mssgle:LineSegment
+                    End="154.166666666667,29.5405892964522" />
+                  <mssgle:CubicBezierSegment
+                    Point1="154.166666666667,29.5405892964522"
+                    Point2="158.166666666667,29.5405892964522"
+                    Point3="158.166666666667,33.5405892964522" />
+                  <mssgle:LineSegment
+                    End="158.166666666667,110.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="20.1331184895833,34.5405892964522,117.9004296875,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos.Paths[ValorEuropa igual a Cero]"
+          TopLeft="141.666666666667,159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-118.166666666667,57"
+              Start="0,0"
+              End="-118.166666666667,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.9645219482862" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.9645219482862"
+                    Point2="0,22.9645219482862"
+                    Point3="-4,22.9645219482862" />
+                  <mssgle:LineSegment
+                    End="-114.166666666667,22.9645219482862" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-114.166666666667,22.9645219482862"
+                    Point2="-118.166666666667,22.9645219482862"
+                    Point3="-118.166666666667,26.9645219482862" />
+                  <mssgle:LineSegment
+                    End="-118.166666666667,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-114.673548177083,27.9645219482862,111.1804296875,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos.Paths[Salida de origen de OLE DB]"
+          TopLeft="196.5,65">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos.Paths[Salida de conversión de datos]"
+          TopLeft="75.75,377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos.Paths[Salida de columna derivada1]"
+          TopLeft="407.5,319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-66.5,100"
+              Start="0,0"
+              End="-66.5,92.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,46"
+                    Point2="0,50"
+                    Point3="-4,50" />
+                  <mssgle:LineSegment
+                    End="-62.5,50" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-62.5,50"
+                    Point2="-66.5,50"
+                    Point3="-66.5,54" />
+                  <mssgle:LineSegment
+                    End="-66.5,92.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarea Flujo de datos - Generar nuevos datos.Paths[Salida de columna derivada]"
+          TopLeft="77.25,258">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,77"
+              Start="0,0"
+              End="0,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos - Generar nuevos datos\Origen de OLE DB - SELECT en tabla FIFA">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresSinValor">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarea Flujo de datos - Generar nuevos datos\Destino de OLE DB JugadoresConValor">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
