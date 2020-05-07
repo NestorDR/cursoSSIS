@@ -18,3 +18,7 @@ ALTER SCHEMA dw TRANSFER dbo.dwFIFA
 -- Renombrar tabla en esquema DW (note que en nombre destino no se repite prefijo del esquema: dw.)
 EXEC sp_rename 'dw.dwFIFA', 'FIFA'
 GO
+
+-- Valor predeterminado para columna [FechaInicio]
+ALTER TABLE [dw].[FIFA] ADD  CONSTRAINT [DF__dwFIFA__FechaIni__078C1F06]  DEFAULT (getdate()) FOR [FechaInicio]
+GO
